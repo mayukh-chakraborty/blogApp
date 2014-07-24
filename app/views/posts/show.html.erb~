@@ -1,0 +1,44 @@
+<p>
+  <strong>Author Id:</strong>
+  <%= @post.author_id %>
+</p>
+ 
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<h2>Comments</h2>
+<% @post.comments.each do |c| %>
+  <p>
+    <strong>Author Id:</strong>
+    <%= c.author_id %>
+  </p>
+ 
+  <p>
+    <strong>Content:</strong>
+    <%= c.content %>
+  </p>
+<% end %>
+
+
+<h2>Comment:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <p>
+    <%= f.label :author_id %><br>
+    <%= f.text_field :author_id %>
+  </p>
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+
+
+<%= link_to 'Back', posts_path %>
+
+<%= link_to 'Edit', edit_post_path(@post) %>
